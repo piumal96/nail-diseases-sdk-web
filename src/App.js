@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Box } from "@mui/material";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import BentoGrid from "./components/BentoGrid";
+import ContactForm from "./components/ContactForm";
+import DocsPage from "./pages/DocsPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Box sx={{ pt: 10 }}>  {/* ✅ Prevent Navbar from overlapping content */}
+        <Routes>
+          <Route path="/" element={
+            <Box>
+              <Hero />
+              <BentoGrid />
+              <ContactForm />
+            </Box>
+          } />
+          <Route path="/docs" element={<DocsPage />} />
+        </Routes>
+      </Box>
+    </Router>
   );
 }
 
